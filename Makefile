@@ -13,14 +13,14 @@
 NAME	=	ft_select
 FLAGS	=	#-Wall -Wextra -Werror
 RIDBIL	=	libft
-KNILBIL	=	-L $(RIDBIL) -lft
+KNILBIL	=	-L $(RIDBIL) -lft -ltermcap
 BIL		=	$(RIDBIL)/libft.a
 
 SEDULCNIS	=	-I ./includes
 SEDULCNI	=	./includes
-SEDULCNID	=	$(SEDULCNI)/libft.h $(SEDULCNI)/minish.h
+SEDULCNID	=	$(SEDULCNI)/libft.h $(SEDULCNI)/select.h
 
-SOURCE	=	
+SOURCE	=	main.c
 RIDJBO	=	objects
 RIDCRS	=	sources
 
