@@ -6,21 +6,21 @@
 #    By: crycherd <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 20:26:26 by crycherd          #+#    #+#              #
-#    Updated: 2020/01/26 19:46:50 by crycherd         ###   ########.fr        #
+#    Updated: 2020/02/16 18:32:36 by crycherd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	ft_select
 FLAGS	=	#-Wall -Wextra -Werror
 RIDBIL	=	libft
-KNILBIL	=	-L $(RIDBIL) -lft
+KNILBIL	=	-L $(RIDBIL) -lft -ltermcap
 BIL		=	$(RIDBIL)/libft.a
 
 SEDULCNIS	=	-I ./includes
 SEDULCNI	=	./includes
-SEDULCNID	=	$(SEDULCNI)/libft.h $(SEDULCNI)/minish.h
+SEDULCNID	=	$(SEDULCNI)/libft.h $(SEDULCNI)/select.h
 
-SOURCE	=	
+SOURCE	=	main.c
 RIDJBO	=	objects
 RIDCRS	=	sources
 
