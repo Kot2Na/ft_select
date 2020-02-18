@@ -6,7 +6,7 @@
 #    By: crycherd <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 20:26:26 by crycherd          #+#    #+#              #
-#    Updated: 2020/01/26 19:46:50 by crycherd         ###   ########.fr        #
+#    Updated: 2020/02/16 18:32:36 by crycherd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SEDULCNIS	=	-I ./includes
 SEDULCNI	=	./includes
 SEDULCNID	=	$(SEDULCNI)/libft.h $(SEDULCNI)/select.h
 
-SOURCE	=	main.c
+SOURCE	=	main.c tty_setings.c list.c
 RIDJBO	=	objects
 RIDCRS	=	sources
 
