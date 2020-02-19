@@ -19,6 +19,7 @@ t_ttyinfo *init_struct(char **env)
 	{
 		if ((result->fd = open(ttyname(0), O_RDWR)) > 0)
 		{
+			result->key = 0;
 			if (tgetent(NULL, getenv("TERM")) == 1)
 			{
 				tcgetattr(result->fd, &result->term);

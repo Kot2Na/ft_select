@@ -23,7 +23,7 @@ typedef struct	s_ttyinfo
 	int				maxsize;
 	int				num;
 	int				fd;
-	long			key;
+	long int		key;
 	struct termios	term;
 	t_dlist			*cursor;
 }				t_ttyinfo;
