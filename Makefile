@@ -20,7 +20,7 @@ SEDULCNIS	=	-I ./includes
 SEDULCNI	=	./includes
 SEDULCNID	=	$(SEDULCNI)/libft.h $(SEDULCNI)/select.h
 
-SOURCE	=	main.c tty_setings.c list.c
+SOURCE	=	main.c tty_setings.c list.c main_end.c print_items.c key_handling.c
 RIDJBO	=	objects
 RIDCRS	=	sources
 
