@@ -10,6 +10,8 @@
 
 # define ESC 0x1B
 
+typedef struct winsize	t_win;
+
 typedef struct		s_dlist
 {
 	char			*item;
@@ -28,13 +30,13 @@ typedef struct	s_ttyinfo
 	t_dlist			*cursor;
 }				t_ttyinfo;
 
-t_ttyinfo			*init_struct(char **env);
+t_ttyinfo			*init_struct(int ac);
 void				key_handling(t_dlist *list, t_ttyinfo *tty);
 void				main_end(int num, t_dlist *list, t_ttyinfo *tty);
 void				print_items(t_dlist *list, t_ttyinfo *tty);
 void				destr_list(t_dlist *list);
 void				toend_list(t_dlist **head, t_dlist *new);
 t_dlist				*newitem_list(char *item);
-t_dlist				*create_list(char **av);
+t_dlist				*create_list(char **av, t_ttyinfo *tty);
 
 #endif

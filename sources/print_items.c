@@ -1,19 +1,43 @@
 #include "select.h"
 
+int		print_check(t_win *win, t_ttyinfo *tty)
+{
+	int result;
+	int col;
+	int row;
+
+	result = 0;
+	col = win->ws_col / tty->maxsize;
+	row = win->ws_row;
+	if (col * row >= tty->num)
+		result = 1;
+	return (result);
+}
+
 void	print_items(t_dlist *list, t_ttyinfo *tty)
 {
-	int i;
+	int x;
+	int y;
+	t_win win;
 
-	i = 0;
 	if (list && tty)
 	{
+		ioctl(tty->fd, TIOCGWINSZ, &win);
 		ft_putstr_fd(tgetstr("cl", NULL), tty->fd);
-		while (list)
-		{
-			ft_putstr_fd(tgoto(tgetstr("cm", NULL), 0, i), tty->fd);
-			ft_putstr_fd(list->item, tty->fd);
-			list = list->next;
-			i++;
-		}
+		x = 0;
+		y = 0;
+		if (print_check(&win, tty))
+			while (list)
+			{
+				ft_putstr_fd(tgoto(tgetstr("cm", NULL), x, y), tty->fd);
+				ft_putstr_fd(list->item, tty->fd);
+				list = list->next;
+				y++;
+				if (y == win.ws_row)
+				{
+					y = 0;
+					x = tty->maxsize + 1;
+				}
+			}
 	}
 }

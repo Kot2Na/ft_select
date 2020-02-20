@@ -5,8 +5,8 @@ int	main(int ac, char **av, char **ev)
 	t_ttyinfo	*tty;
 	t_dlist		*list;
 	
-	tty = init_struct(ev);
-	list = create_list(av);
+	tty = init_struct(ac);
+	list = create_list(av, tty);
 	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
 	while (1)
 	{

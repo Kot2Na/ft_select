@@ -10,7 +10,7 @@ t_ttyinfo *safe_set(t_ttyinfo **item)
 	return (*item);
 }
 
-t_ttyinfo *init_struct(char **env)
+t_ttyinfo *init_struct(int ac)
 {
 	t_ttyinfo *result;
 
@@ -20,6 +20,7 @@ t_ttyinfo *init_struct(char **env)
 		if ((result->fd = open(ttyname(0), O_RDWR)) > 0)
 		{
 			result->key = 0;
+			result->num = ac - 1;
 			if (tgetent(NULL, getenv("TERM")) == 1)
 			{
 				tcgetattr(result->fd, &result->term);
