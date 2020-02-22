@@ -30,7 +30,15 @@ void	print_items(t_dlist *list, t_ttyinfo *tty)
 			while (list)
 			{
 				ft_putstr_fd(tgoto(tgetstr("cm", NULL), x, y), tty->fd);
+				if (list == tty->cursor)
+					ft_putstr_fd(tgetstr("us", NULL), tty->fd);
+				if (list->selected)
+					ft_putstr_fd(tgetstr("so", NULL), tty->fd);
 				ft_putstr_fd(list->item, tty->fd);
+				if (list == tty->cursor)
+					ft_putstr_fd(tgetstr("ue", NULL), tty->fd);
+				if (list->selected)
+					ft_putstr_fd(tgetstr("se", NULL), tty->fd);
 				list = list->next;
 				y++;
 				if (y == win.ws_row)
