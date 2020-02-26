@@ -10,6 +10,8 @@ int	main(int ac, char **av, char **ev)
 	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
 	while (1)
 	{
+		if (tty->cursor)
+			list = gohead_list(tty->cursor);
 		print_items(list, tty);
 		if (read(tty->fd, &tty->key, sizeof(long int)) > 0)
 		{
