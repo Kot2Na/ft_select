@@ -14,8 +14,10 @@ void	key_handling(t_dlist *list, t_ttyinfo *tty)
 		down_key(list, tty);
 	else if (tty->key == SPACE)
 		space_key(list, tty);
-	else if (tty->key == BSPACE)
+	else if (tty->key == BSPACE || tty->key == DEL)
 		backspace_key(list, tty);
+	else if (tty->key == ENTER)
+		enter_key(list, tty);
 	tty->key = 0;
 }
 
@@ -41,5 +43,30 @@ void	backspace_key(t_dlist *list, t_ttyinfo *tty)
 		tty->num -= 1;
 		if (tty->cursor == NULL)
 			main_end(0, NULL, tty);
+	}
+}
+
+void	enter_key(t_dlist *list, t_ttyinfo *tty)
+{
+	t_dlist	*iter;
+	int		flag;
+
+	flag = 0;
+	if (list && tty)
+	{
+		iter = list;
+		ft_putstr_fd(tgetstr("cl", NULL), tty->fd);
+		while (iter)
+		{
+			if (iter->selected)
+			{
+				if (flag)
+					ft_putstr_fd(" ", 0);
+				ft_putstr_fd(iter->item, 0);
+				flag = 1;
+			}
+			iter = iter->next;
+		}
+		main_end(0, list, tty);
 	}
 }

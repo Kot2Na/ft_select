@@ -15,6 +15,8 @@
 # define DOWN 0x415B1B
 # define SPACE 0x20
 # define BSPACE 0x7F
+# define ENTER 0xA
+# define DEL 0x7E335B1B
 
 typedef struct winsize	t_win;
 
@@ -48,8 +50,9 @@ void				left_key(t_dlist *list, t_ttyinfo *tty);
 void				up_key(t_dlist *list, t_ttyinfo *tty);
 void				down_key(t_dlist *list, t_ttyinfo *tty);
 void				space_key(t_dlist *list, t_ttyinfo *tty);
-t_dlist				*gohead_list(t_dlist *list);
+void				enter_key(t_dlist *list, t_ttyinfo *tty);
 void				backspace_key(t_dlist *list, t_ttyinfo *tty);
+t_dlist				*gohead_list(t_dlist *list);
 t_dlist				*remove_item(t_dlist *item);
 t_dlist				*get_item(t_dlist *list, int n);
 t_dlist				*newitem_list(char *item);
