@@ -5,6 +5,7 @@
 # include <termios.h>
 # include <termcap.h>
 # include <curses.h>
+# include <signal.h>
 # include <sys/ioctl.h>
 # include "libft.h"
 
@@ -39,7 +40,9 @@ typedef struct		s_ttyinfo
 }					t_ttyinfo;
 
 t_ttyinfo			*init_struct(int ac);
+t_ttyinfo			*safe_tty(t_ttyinfo **item);
 int					num_item(t_dlist *start, t_dlist *find);
+void   				set_signals(t_ttyinfo *tty);
 void				key_handling(t_dlist *list, t_ttyinfo *tty);
 void				main_end(int num, t_dlist *list, t_ttyinfo *tty);
 void				print_items(t_dlist *list, t_ttyinfo *tty);

@@ -1,10 +1,10 @@
 #include "select.h"
 
-t_ttyinfo *safe_set(t_ttyinfo **item)
+t_ttyinfo *safe_tty(t_ttyinfo **item)
 {
 	static t_ttyinfo *safe;
 
-	if (item = NULL)
+	if (*item == NULL)
 		return (safe);
 	safe = *item;
 	return (*item);
@@ -17,7 +17,7 @@ t_ttyinfo *init_struct(int ac)
 	result = NULL;
 	if (!(result = (t_ttyinfo *)malloc(sizeof(t_ttyinfo))))
 		print_error("Not enough memory\n", 1);
-	if (tgetent(NULL, getenv("TERM")) == 1)
+	if (tgetent(NULL, getenv("TERM")) <= 0)
 	{
 		free(result);
 		print_error("Term didn't find\n", 1);
