@@ -1,5 +1,11 @@
 #include "select.h"
 
+void	print_error(char *text, int code)
+{
+	ft_putstr_fd(text, 2);
+	exit(code);
+}
+
 int		print_check(t_win *win, t_ttyinfo *tty)
 {
 	int result;

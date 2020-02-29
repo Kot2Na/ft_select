@@ -52,6 +52,7 @@ void				down_key(t_dlist *list, t_ttyinfo *tty);
 void				space_key(t_dlist *list, t_ttyinfo *tty);
 void				enter_key(t_dlist *list, t_ttyinfo *tty);
 void				backspace_key(t_dlist *list, t_ttyinfo *tty);
+void				print_error(char *text, int code);
 t_dlist				*gohead_list(t_dlist *list);
 t_dlist				*remove_item(t_dlist *item);
 t_dlist				*get_item(t_dlist *list, int n);

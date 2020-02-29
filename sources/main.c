@@ -5,6 +5,10 @@ int	main(int ac, char **av, char **ev)
 	t_ttyinfo	*tty;
 	t_dlist		*list;
 	
+	if (ev == NULL || *ev == NULL)
+		print_error("No environment\n", 1);
+	if (ac < 2)
+		print_error("No arguments\n", 1)
 	tty = init_struct(ac);
 	list = create_list(av, tty);
 	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
