@@ -23,7 +23,6 @@ void	wake_up(int s)
 	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
 	ft_putstr_fd(tgetstr("ti", NULL), tty->fd);
 	byte[0] = -62;
-	//byte[0] = 0;
 	byte[1] = 0;
 	ioctl(0, TIOCSTI, byte);
 }
@@ -39,8 +38,6 @@ void	go_sleep(int s)
 		ft_putstr_fd("Some error\n", 2);
 		main_end(-1);
 	}
-	byte[0] = t_term.c_cc[VSUSP];
-	byte[1] = 0;
 	t_term.c_lflag |= (ECHO | ICANON);
 	t_term.c_oflag |= OPOST;
 	if (tcsetattr(0, TCSADRAIN, &t_term) == -1)
@@ -49,8 +46,10 @@ void	go_sleep(int s)
 		main_end(-1);
 	}
 	ft_putstr_fd(tgetstr("ve", NULL), 2);
-	ft_putstr_fd(tgetstr("te", NULL), 2);
+	ft_putstr_fd(tgetstr("me", NULL), 2);
 	signal(SIGTSTP, SIG_DFL);
+	byte[0] = t_term.c_cc[VSUSP];
+	byte[1] = 0;
 	ioctl(0, TIOCSTI, byte);
 }
 

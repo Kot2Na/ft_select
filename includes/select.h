@@ -23,6 +23,8 @@
 
 typedef struct winsize	t_win;
 
+int lol;
+
 typedef struct		s_dlist
 {
 	char			*item;
@@ -36,7 +38,7 @@ typedef struct		s_ttyinfo
 	int				maxsize;
 	int				num;
 	int				fd;
-	int				key;
+	long			key;
 	struct termios	term;
 	t_dlist			*cursor;
 }					t_ttyinfo;

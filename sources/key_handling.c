@@ -69,6 +69,6 @@ void	enter_key(t_dlist *list, t_ttyinfo *tty)
 			}
 			iter = iter->next;
 		}
-		main_end(0);
+		main_end(-1);
 	}
 }

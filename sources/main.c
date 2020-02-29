@@ -19,11 +19,11 @@ int	main(int ac, char **av, char **ev)
 		if (tty->cursor)
 			list = gohead_list(tty->cursor);
 		print_items(list, tty);
-		if (read(tty->fd, &tty->key, sizeof(long int)) > 0)
-		{
+		read(tty->fd, &tty->key, sizeof(long int));
+		//if (read(tty->fd, &tty->key, sizeof(long int)) > 0)
+		//{
 			key_handling(list, tty);
-		}
-		ft_putstr_fd("looooooool\n", tty->fd);
+		//}
 	}
 	return (0);
 }

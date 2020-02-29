@@ -10,7 +10,7 @@ void	main_end(int num)
 	if (tty)
 	{
 		head = gohead_list(tty->cursor);
-		if (num == -1)
+		if (num != -1)
 			ft_putstr_fd(tgetstr("cl", NULL), tty->fd);
 		ft_putstr_fd(tgetstr("me", NULL), tty->fd);
 		ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
