@@ -3,7 +3,7 @@
 void	key_handling(t_dlist *list, t_ttyinfo *tty)
 {
 	if (tty->key == ESC)
-		main_end(0, list, tty);
+		main_end(0);
 	else if (tty->key == RIGHT)
 		right_key(list, tty);
 	else if (tty->key == LEFT)
@@ -42,7 +42,9 @@ void	backspace_key(t_dlist *list, t_ttyinfo *tty)
 		tty->cursor = remove_item(tty->cursor);
 		tty->num -= 1;
 		if (tty->cursor == NULL)
-			main_end(0, NULL, tty);
+			main_end(0);
+		list = gohead_list(tty->cursor);
+		tty->maxsize = max_len(list);
 	}
 }
 
@@ -67,6 +69,6 @@ void	enter_key(t_dlist *list, t_ttyinfo *tty)
 			}
 			iter = iter->next;
 		}
-		main_end(0, list, tty);
+		main_end(0);
 	}
 }

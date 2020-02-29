@@ -11,6 +11,7 @@ int	main(int ac, char **av, char **ev)
 		print_error("No arguments\n", 1);
 	tty = init_struct(ac);
 	list = create_list(av, tty);
+	//safe_tty(&tty);
 	set_signals(tty);
 	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
 	while (1)
@@ -22,6 +23,7 @@ int	main(int ac, char **av, char **ev)
 		{
 			key_handling(list, tty);
 		}
+		ft_putstr_fd("looooooool\n", tty->fd);
 	}
 	return (0);
 }

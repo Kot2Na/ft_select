@@ -7,6 +7,8 @@
 # include <curses.h>
 # include <signal.h>
 # include <sys/ioctl.h>
+# include <sys/types.h>
+# include <fcntl.h>
 # include "libft.h"
 
 # define ESC 0x1B
@@ -41,10 +43,11 @@ typedef struct		s_ttyinfo
 
 t_ttyinfo			*init_struct(int ac);
 t_ttyinfo			*safe_tty(t_ttyinfo **item);
+int					max_len(t_dlist *list);
 int					num_item(t_dlist *start, t_dlist *find);
 void   				set_signals(t_ttyinfo *tty);
 void				key_handling(t_dlist *list, t_ttyinfo *tty);
-void				main_end(int num, t_dlist *list, t_ttyinfo *tty);
+void				main_end(int num);
 void				print_items(t_dlist *list, t_ttyinfo *tty);
 void				destr_list(t_dlist *list);
 void				toend_list(t_dlist **head, t_dlist *new);

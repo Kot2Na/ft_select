@@ -35,27 +35,37 @@ void	toend_list(t_dlist **head, t_dlist *new)
 	}
 }
 
+int	max_len(t_dlist *list)
+{
+	int result;
+
+	result = 0;
+	while (list)
+	{
+		if (ft_strlen(list->item) > result)
+			result = ft_strlen(list->item);
+		list = list->next;
+	}
+	return (result);
+}
+
 t_dlist *create_list(char **av, t_ttyinfo *tty)
 {
 	int		i;
-	int		len;
 	t_dlist	*result;
 
 	result = NULL;
-	len = 0;
 	i = 1;
 	if (av)
 	{
 		while (av[i])
 		{
-			if (ft_strlen(av[i]) > len)
-				len = ft_strlen(av[i]);
 			toend_list(&result, newitem_list(av[i]));
 			i++;
 		}
 	}
 	tty->cursor = result;
-	tty->maxsize = len;
+	tty->maxsize = max_len(result);
 	return (result);
 }
 

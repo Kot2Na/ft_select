@@ -50,7 +50,7 @@ void	print_items(t_dlist *list, t_ttyinfo *tty)
 				if (y == win.ws_row)
 				{
 					y = 0;
-					x = tty->maxsize + 1;
+					x += tty->maxsize + 1;
 				}
 			}
 	}
