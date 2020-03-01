@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tty_setings.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/01 18:08:47 by crycherd          #+#    #+#             */
+/*   Updated: 2020/03/01 18:15:05 by crycherd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "select.h"
 
-t_ttyinfo *safe_tty(t_ttyinfo **item)
+t_ttyinfo	*safe_tty(t_ttyinfo **item)
 {
 	static t_ttyinfo *safe;
 
@@ -10,7 +22,7 @@ t_ttyinfo *safe_tty(t_ttyinfo **item)
 	return (*item);
 }
 
-void	set_settings_close(t_ttyinfo *tty)
+void		set_settings_close(t_ttyinfo *tty)
 {
 	if (tty)
 	{
@@ -19,7 +31,7 @@ void	set_settings_close(t_ttyinfo *tty)
 	}
 }
 
-void	set_settings_open(t_ttyinfo *tty)
+void		set_settings_open(t_ttyinfo *tty)
 {
 	if (tty)
 	{
@@ -35,9 +47,9 @@ void	set_settings_open(t_ttyinfo *tty)
 	}
 }
 
-t_ttyinfo *init_struct(int ac)
+t_ttyinfo	*init_struct(int ac)
 {
-	t_ttyinfo *result;
+	t_ttyinfo	*result;
 
 	result = NULL;
 	if (!(result = (t_ttyinfo *)malloc(sizeof(t_ttyinfo))))

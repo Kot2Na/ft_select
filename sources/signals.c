@@ -1,4 +1,16 @@
-# include "select.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   signals.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/01 18:08:33 by crycherd          #+#    #+#             */
+/*   Updated: 2020/03/01 18:16:24 by crycherd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "select.h"
 
 void	wake_up(int s)
 {
@@ -15,7 +27,7 @@ void	wake_up(int s)
 	set_settings_open(tty);
 	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
 	ft_putstr_fd(tgetstr("ti", NULL), tty->fd);
-	set_signals(tty);
+	set_signals();
 	print_items(gohead_list(tty->cursor), tty);
 }
 
@@ -33,28 +45,27 @@ void	go_sleep(int s)
 	ioctl(tty->fd, TIOCSTI, "\x1A");
 }
 
-void    size_changed(int s)
+void	size_changed(int s)
 {
-    t_ttyinfo   *tty;
-    t_dlist     *head;
+	t_ttyinfo	*tty;
+	t_dlist		*head;
 
-    (void)s;
-    tty = NULL;
-    tty = safe_tty(&tty);
-    head = gohead_list(tty->cursor);
+	(void)s;
+	tty = NULL;
+	tty = safe_tty(&tty);
+	head = gohead_list(tty->cursor);
 	if (tgetent(NULL, getenv("TERM")) <= 0)
-    {
+	{
 		ft_putstr_fd("Term didn't find\n", 2);
-        main_end(1);
-    }
-    print_items(head, tty);
+		main_end(1);
+	}
+	print_items(head, tty);
 }
 
-void    set_signals(t_ttyinfo *tty)
+void	set_signals(void)
 {
-    safe_tty(&tty);
-    signal(SIGWINCH, size_changed);
-    signal(SIGTSTP, go_sleep);
+	signal(SIGWINCH, size_changed);
+	signal(SIGTSTP, go_sleep);
 	signal(SIGCONT, wake_up);
 	signal(SIGPIPE, main_end);
 	signal(SIGILL, main_end);

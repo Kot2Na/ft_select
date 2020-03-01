@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_manage.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/01 18:07:59 by crycherd          #+#    #+#             */
+/*   Updated: 2020/03/01 18:11:05 by crycherd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "select.h"
 
 int		num_item(t_dlist *start, t_dlist *find)
 {
 	int i;
 
+	i = 0;
 	if (find == NULL)
 		return (-1);
 	if (start)
 	{
-		i = 0;
 		while (start && start != find)
 		{
 			start = start->next;
@@ -59,4 +71,12 @@ t_dlist	*remove_item(t_dlist *item)
 		}
 	}
 	return (next);
+}
+
+t_dlist	*gohead_list(t_dlist *list)
+{
+	if (list)
+		while (list->prev)
+			list = list->prev;
+	return (list);
 }

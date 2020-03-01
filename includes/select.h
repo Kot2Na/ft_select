@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   select.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: crycherd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/01 18:56:04 by crycherd          #+#    #+#             */
+/*   Updated: 2020/03/01 19:01:24 by crycherd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SELECT_H
 # define SELECT_H
 
@@ -22,8 +34,6 @@
 # define DEL 0x7E335B1B
 
 typedef struct winsize	t_win;
-
-int lol;
 
 typedef struct		s_dlist
 {
@@ -50,7 +60,7 @@ int					max_len(t_dlist *list);
 int					num_item(t_dlist *start, t_dlist *find);
 void				set_settings_open(t_ttyinfo *tty);
 void				set_settings_close(t_ttyinfo *tty);
-void   				set_signals(t_ttyinfo *tty);
+void				set_signals(void);
 void				key_handling(t_dlist *list, t_ttyinfo *tty);
 void				main_end(int num);
 void				print_items(t_dlist *list, t_ttyinfo *tty);
@@ -64,10 +74,11 @@ void				space_key(t_dlist *list, t_ttyinfo *tty);
 void				enter_key(t_dlist *list, t_ttyinfo *tty);
 void				backspace_key(t_dlist *list, t_ttyinfo *tty);
 void				print_error(char *text, int code);
+void				get_cor(t_dlist *list, t_ttyinfo *tty, int *x, int *y);
+void				change_cursor(t_dlist *list, t_ttyinfo *tty, int x, int y);
 t_dlist				*gohead_list(t_dlist *list);
 t_dlist				*remove_item(t_dlist *item);
 t_dlist				*get_item(t_dlist *list, int n);
 t_dlist				*newitem_list(char *item);
 t_dlist				*create_list(char **av, t_ttyinfo *tty);
-
 #endif

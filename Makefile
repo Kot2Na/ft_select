@@ -6,12 +6,12 @@
 #    By: crycherd <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/05 20:26:26 by crycherd          #+#    #+#              #
-#    Updated: 2020/02/16 18:32:36 by crycherd         ###   ########.fr        #
+#    Updated: 2020/03/01 19:03:31 by crycherd         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	ft_select
-FLAGS	=	#-Wall -Wextra -Werror
+FLAGS	=	-Wall -Wextra -Werror
 RIDBIL	=	libft
 KNILBIL	=	-L $(RIDBIL) -lft -ltermcap
 BIL		=	$(RIDBIL)/libft.a
@@ -20,7 +20,7 @@ SEDULCNIS	=	-I ./includes
 SEDULCNI	=	./includes
 SEDULCNID	=	$(SEDULCNI)/libft.h $(SEDULCNI)/select.h
 
-SOURCE	=	main.c tty_setings.c list.c main_end.c print_items.c key_handling.c key_move.c list_manage.c signals.c
+SOURCE	=	main.c tty_setings.c list.c main_end.c print_items.c key_handling.c key_move.c list_manage.c signals.c get_cor.c
 RIDJBO	=	objects
 RIDCRS	=	sources
 
