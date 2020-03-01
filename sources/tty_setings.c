@@ -26,10 +26,10 @@ void		set_settings_close(t_ttyinfo *tty)
 {
 	if (tty)
 	{
+		ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
+		ft_putstr_fd(tgetstr("me", NULL), tty->fd);
 		if (tcsetattr(tty->fd, TCSANOW, &tty->term_old) == -1)
 			main_end(-1);
-		ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
-		ft_putstr_fd(tgetstr("te", NULL), tty->fd);
 	}
 }
 

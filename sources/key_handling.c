@@ -68,16 +68,14 @@ void	enter_key(t_dlist *list, t_ttyinfo *tty)
 	if (list && tty)
 	{
 		ft_putstr_fd(tgetstr("cl", NULL), tty->fd);
-		//ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
-		//ft_putstr_fd(tgetstr("te", NULL), tty->fd);
-		//set_settings_close(tty);
+		set_settings_close(tty);
 		while (list)
 		{
 			if (list->selected)
 			{
 				if (flag)
-					ft_putstr_fd(" ", 0);
-				ft_putstr_fd(list->item, 0);
+					ft_putstr_fd(" ", 1);
+				ft_putstr_fd(list->item, 1);
 				flag = 1;
 			}
 			list = list->next;
