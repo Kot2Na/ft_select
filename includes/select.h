@@ -39,7 +39,8 @@ typedef struct		s_ttyinfo
 	int				num;
 	int				fd;
 	long			key;
-	struct termios	term;
+	struct termios	term_new;
+	struct termios	term_old;
 	t_dlist			*cursor;
 }					t_ttyinfo;
 
@@ -47,6 +48,8 @@ t_ttyinfo			*init_struct(int ac);
 t_ttyinfo			*safe_tty(t_ttyinfo **item);
 int					max_len(t_dlist *list);
 int					num_item(t_dlist *start, t_dlist *find);
+void				set_settings_open(t_ttyinfo *tty);
+void				set_settings_close(t_ttyinfo *tty);
 void   				set_signals(t_ttyinfo *tty);
 void				key_handling(t_dlist *list, t_ttyinfo *tty);
 void				main_end(int num);

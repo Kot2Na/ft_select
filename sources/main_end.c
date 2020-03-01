@@ -14,9 +14,7 @@ void	main_end(int num)
 			ft_putstr_fd(tgetstr("cl", NULL), tty->fd);
 		ft_putstr_fd(tgetstr("me", NULL), tty->fd);
 		ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
-		tty->term.c_lflag |= (ECHO | ICANON);
-		tty->term.c_oflag |= (OPOST);
-		tcsetattr(tty->fd, TCSANOW, &tty->term);
+		set_settings_close(tty);
 		destr_list(head);
 		close(tty->fd);
 		free(tty);

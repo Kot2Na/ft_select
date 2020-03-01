@@ -11,7 +11,6 @@ int	main(int ac, char **av, char **ev)
 		print_error("No arguments\n", 1);
 	tty = init_struct(ac);
 	list = create_list(av, tty);
-	//safe_tty(&tty);
 	set_signals(tty);
 	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
 	while (1)
@@ -19,11 +18,8 @@ int	main(int ac, char **av, char **ev)
 		if (tty->cursor)
 			list = gohead_list(tty->cursor);
 		print_items(list, tty);
-		read(tty->fd, &tty->key, sizeof(long int));
-		//if (read(tty->fd, &tty->key, sizeof(long int)) > 0)
-		//{
-			key_handling(list, tty);
-		//}
+		read(tty->fd, &tty->key, sizeof(long));
+		key_handling(list, tty);
 	}
 	return (0);
 }

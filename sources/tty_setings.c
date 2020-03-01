@@ -10,6 +10,31 @@ t_ttyinfo *safe_tty(t_ttyinfo **item)
 	return (*item);
 }
 
+void	set_settings_close(t_ttyinfo *tty)
+{
+	if (tty)
+	{
+		if (tcsetattr(tty->fd, TCSANOW, &tty->term_old) == -1)
+			main_end(-1);
+	}
+}
+
+void	set_settings_open(t_ttyinfo *tty)
+{
+	if (tty)
+	{
+		if (tcgetattr(tty->fd, &tty->term_new) == -1 ||
+			tcgetattr(tty->fd, &tty->term_old) == -1)
+			main_end(-1);
+		tty->term_new.c_lflag &= ~(ECHO | ICANON);
+		tty->term_new.c_oflag &= ~(OPOST);
+		tty->term_new.c_cc[VMIN] = 1;
+		tty->term_new.c_cc[VTIME] = 0;
+		if (tcsetattr(tty->fd, TCSANOW, &tty->term_new) == -1)
+			main_end(-1);
+	}
+}
+
 t_ttyinfo *init_struct(int ac)
 {
 	t_ttyinfo *result;
@@ -29,11 +54,7 @@ t_ttyinfo *init_struct(int ac)
 	}
 	result->key = 0;
 	result->num = ac - 1;
-	tcgetattr(result->fd, &result->term);
-	result->term.c_lflag &= ~(ECHO | ICANON);
-	result->term.c_oflag &= ~(OPOST);
-	result->term.c_cc[VMIN] = 1;
-	result->term.c_cc[VTIME] = 0;
-	tcsetattr(result->fd, TCSANOW, &result->term);
+	result->cursor = NULL;
+	set_settings_open(result);
 	return (result);
 }

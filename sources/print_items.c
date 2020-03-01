@@ -53,5 +53,10 @@ void	print_items(t_dlist *list, t_ttyinfo *tty)
 					x += tty->maxsize + 1;
 				}
 			}
+		else
+		{
+			ft_putstr_fd(tgoto(tgetstr("cm", NULL), x, y), tty->fd);
+			ft_putstr_fd("Not enough space\n", tty->fd);
+		}
 	}
 }

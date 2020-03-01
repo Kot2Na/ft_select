@@ -3,54 +3,34 @@
 void	wake_up(int s)
 {
 	t_ttyinfo	*tty;
-	char		byte[2];
 
 	(void)s;
 	tty = NULL;
 	tty = safe_tty(&tty);
-	tcgetattr(tty->fd, &tty->term);
-	tty->term.c_cflag &= ~(ECHO | ICANON);
-	tty->term.c_oflag &= ~(OPOST);
-	tty->term.c_cc[VMIN] = 1;
-	tty->term.c_cc[VTIME] = 0;
-	tcsetattr(tty->fd, TCSANOW, &tty->term);
 	if (tgetent(NULL, getenv("TERM")) <= 0)
 	{
 		ft_putstr_fd("Some error\n", 2);
 		main_end(-1);
 	}
-	set_signals(tty);
+	set_settings_open(tty);
 	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
 	ft_putstr_fd(tgetstr("ti", NULL), tty->fd);
-	byte[0] = -62;
-	byte[1] = 0;
-	ioctl(0, TIOCSTI, byte);
+	set_signals(tty);
+	print_items(gohead_list(tty->cursor), tty);
 }
 
 void	go_sleep(int s)
 {
-	struct termios	t_term;
-	char			byte[2];
+	t_ttyinfo		*tty;
 
 	(void)s;
-	if (tcgetattr(0, &t_term) == -1)
-	{
-		ft_putstr_fd("Some error\n", 2);
-		main_end(-1);
-	}
-	t_term.c_lflag |= (ECHO | ICANON);
-	t_term.c_oflag |= OPOST;
-	if (tcsetattr(0, TCSADRAIN, &t_term) == -1)
-	{
-		ft_putstr_fd("Some error\n", 2);
-		main_end(-1);
-	}
-	ft_putstr_fd(tgetstr("ve", NULL), 2);
-	ft_putstr_fd(tgetstr("me", NULL), 2);
+	tty = NULL;
+	tty = safe_tty(&tty);
+	set_settings_close(tty);
+	ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
+	ft_putstr_fd(tgetstr("me", NULL), tty->fd);
 	signal(SIGTSTP, SIG_DFL);
-	byte[0] = t_term.c_cc[VSUSP];
-	byte[1] = 0;
-	ioctl(0, TIOCSTI, byte);
+	ioctl(tty->fd, TIOCSTI, "\x1A");
 }
 
 void    size_changed(int s)
