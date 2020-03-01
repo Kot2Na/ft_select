@@ -25,7 +25,6 @@ int	main(int ac, char **av, char **ev)
 	list = create_list(av, tty);
 	safe_tty(&tty);
 	set_signals();
-	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
 	while (1)
 	{
 		if (tty->cursor)

@@ -28,6 +28,8 @@ void		set_settings_close(t_ttyinfo *tty)
 	{
 		if (tcsetattr(tty->fd, TCSANOW, &tty->term_old) == -1)
 			main_end(-1);
+		ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
+		ft_putstr_fd(tgetstr("te", NULL), tty->fd);
 	}
 }
 
@@ -44,6 +46,8 @@ void		set_settings_open(t_ttyinfo *tty)
 		tty->term_new.c_cc[VTIME] = 0;
 		if (tcsetattr(tty->fd, TCSANOW, &tty->term_new) == -1)
 			main_end(-1);
+		ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
+		ft_putstr_fd(tgetstr("ti", NULL), tty->fd);
 	}
 }
 

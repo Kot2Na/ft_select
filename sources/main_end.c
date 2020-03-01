@@ -24,8 +24,6 @@ void	main_end(int num)
 		head = gohead_list(tty->cursor);
 		if (num != -1)
 			ft_putstr_fd(tgetstr("cl", NULL), tty->fd);
-		ft_putstr_fd(tgetstr("me", NULL), tty->fd);
-		ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
 		set_settings_close(tty);
 		destr_list(head);
 		close(tty->fd);

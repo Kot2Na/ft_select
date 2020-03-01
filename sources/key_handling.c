@@ -62,24 +62,25 @@ void	backspace_key(t_dlist *list, t_ttyinfo *tty)
 
 void	enter_key(t_dlist *list, t_ttyinfo *tty)
 {
-	t_dlist	*iter;
 	int		flag;
 
 	flag = 0;
 	if (list && tty)
 	{
-		iter = list;
 		ft_putstr_fd(tgetstr("cl", NULL), tty->fd);
-		while (iter)
+		//ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
+		//ft_putstr_fd(tgetstr("te", NULL), tty->fd);
+		//set_settings_close(tty);
+		while (list)
 		{
-			if (iter->selected)
+			if (list->selected)
 			{
 				if (flag)
 					ft_putstr_fd(" ", 0);
-				ft_putstr_fd(iter->item, 0);
+				ft_putstr_fd(list->item, 0);
 				flag = 1;
 			}
-			iter = iter->next;
+			list = list->next;
 		}
 		main_end(-1);
 	}

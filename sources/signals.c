@@ -25,8 +25,6 @@ void	wake_up(int s)
 		main_end(-1);
 	}
 	set_settings_open(tty);
-	ft_putstr_fd(tgetstr("vi", NULL), tty->fd);
-	ft_putstr_fd(tgetstr("ti", NULL), tty->fd);
 	set_signals();
 	print_items(gohead_list(tty->cursor), tty);
 }
@@ -39,8 +37,6 @@ void	go_sleep(int s)
 	tty = NULL;
 	tty = safe_tty(&tty);
 	set_settings_close(tty);
-	ft_putstr_fd(tgetstr("ve", NULL), tty->fd);
-	ft_putstr_fd(tgetstr("me", NULL), tty->fd);
 	signal(SIGTSTP, SIG_DFL);
 	ioctl(tty->fd, TIOCSTI, "\x1A");
 }
